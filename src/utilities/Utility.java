@@ -3,48 +3,49 @@ package utilities;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class Utility extends BaseClass {
+
+    public void selectFromDropDown(By by, String value) {
+        WebElement dropDown1 = driver.findElement(by);
+        dropDown1.click();
+        Select select1 = new Select(dropDown1);
+        select1.selectByValue(value);
+
+    }
+
     //Click on element
     public void clickOnElement(By by) {
         driver.findElement(by).click();
     }
 
     //Send data to element
-    public void sendDataOmElement(By by, String text) {
+    public void sendDataOnElement(By by, String text) {
         driver.findElement(by).sendKeys(text);
     }
 
-    //Assert Method verification
     public String verifyPage(String expectedMessage, By by, String message) {
         String actualMessage = driver.findElement(by).getText();
-        Assert.assertEquals(message,expectedMessage,actualMessage) ;
+        Assert.assertEquals(message, expectedMessage, actualMessage);
         return message;
     }
 
-    //Get data from element
+    public void mHoverAndClick(By mouseHover, By mouseClick) {
+        Actions actions = new Actions(driver);
+        WebElement hover = driver.findElement(mouseHover);
+        WebElement click1 = driver.findElement(mouseClick);
+        actions.moveToElement(hover).moveToElement(click1).click().build().perform();
+    }
+
+
     public String getDataFromElement(By by) {
         return driver.findElement(by).getText();
     }
 
-    public void selectMenu(String menu){
+    public void selectMenu(String menu) {
         driver.findElement(By.linkText(menu)).click();
-    }
-
-    public void compareDropDownList(){
-        List<WebElement> products = driver.findElements(By.xpath("//ul[@class='products-grid grid-list']"));
-        List<String> names = new ArrayList<String>();
-        for (WebElement e : products) {
-            names.add(e.getText());
-        }
-        List<String> sortedNames = new ArrayList<String>(names);
-        Collections.sort(sortedNames);
-        System.out.println(sortedNames.equals(names));
-        Assert.assertEquals("Your list is not items" , names, sortedNames);
     }
 
 
