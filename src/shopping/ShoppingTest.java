@@ -13,6 +13,7 @@ public class ShoppingTest extends Utility {
     @Before
     public void openWeb(){
         openBrowser("https://mobile.x-cart.com/");
+        System.out.println("hiiiiiiiiiiiiiiiiii");
     }
     @Test
     public void verifyThatUserShouldPlaceOrderSuccessfullyForCupOfMojoBluetoothSpeaker() throws InterruptedException {
