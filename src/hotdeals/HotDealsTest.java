@@ -131,6 +131,7 @@ public class HotDealsTest extends Utility {
         Collections.sort(sortedNames);
         System.out.println(sortedNames.equals(names));
         Assert.assertEquals("Sorting product High to Low is not working", names, sortedNames);
+        syatem.out.println("Hi");
 
     }
 
